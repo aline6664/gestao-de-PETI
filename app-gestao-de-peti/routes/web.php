@@ -39,3 +39,4 @@ Route::resource('canvas', CanvasController::class);
     PUT/PATCH	/empresas/{id}	        Atualiza os dados
     DELETE	    /empresas/{id}	        Exclui
 */
+
