@@ -119,36 +119,37 @@ document.addEventListener("DOMContentLoaded", function() {
         data: {
             labels: ['Forças', 'Fraquezas', 'Oportunidades', 'Ameaças'],
             datasets: [{
-                label: 'Itens SWOT',
+                label: 'Qtd. de Itens',
                 data: dadosAtuais(),
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)'
+                    'rgba(75, 192, 192, 0.75)',
+                    'rgba(255, 99, 132, 0.75)',
+                    'rgba(54, 162, 235, 0.75)',
+                    'rgba(255, 206, 86, 0.75)'
                 ],
-                borderColor: '#333',
+                borderColor: '#444',
                 borderWidth: 1,
-                barThickness: 40
+                barThickness: 25
             }]
         },
         options: {
+            indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
-                    text: 'Distribuição Atual SWOT',
-                    font: { size: 16 }
+                    text: 'Distribuição SWOT',
+                    font: { size: 13 },
+                    padding: { top: 4, bottom: 4 }
                 },
                 legend: { display: false }
             },
             scales: {
-                x: { beginAtZero: true },
-                y: {
-                    beginAtZero: true,
-                    ticks: { precision: 0 }
-                }
-            }
+                x: { beginAtZero: true, ticks: { font: { size: 10 } } },
+                y: { ticks: { font: { size: 11 } } }
+            },
+            layout: { padding: 4 }
         }
     });
 

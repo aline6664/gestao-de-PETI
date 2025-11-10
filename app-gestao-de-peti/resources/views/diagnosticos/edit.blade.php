@@ -4,8 +4,7 @@
 @section('content')
 <div class="container">
     <h2 class="mb-4">Editar Diagnóstico de TI</h2>
-    <p class="text-muted">Atualize as informações e visualize as mudanças no gráfico abaixo.<br>
-    <small>Cada linha (pressionar Enter) adiciona um novo item ao gráfico automaticamente.</small></p>
+    <p class="text-muted">Atualize as informações do diagnóstico da empresa selecionada.</p>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -15,6 +14,10 @@
                 @endforeach
             </ul>
         </div>
+    @endif
+
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     <form action="{{ route('diagnosticos.update', $diagnostico->id) }}" method="POST">
@@ -35,47 +38,55 @@
         <h4 class="mt-4">Análise SWOT</h4>
         <div class="mb-3">
             <label>Forças</label>
-            <textarea id="forcas" name="forcas" class="form-control" rows="3">{{ $diagnostico->forcas }}</textarea>
+            <textarea id="forcas" name="forcas" class="form-control">{{ $diagnostico->forcas }}</textarea>
         </div>
         <div class="mb-3">
             <label>Fraquezas</label>
-            <textarea id="fraquezas" name="fraquezas" class="form-control" rows="3">{{ $diagnostico->fraquezas }}</textarea>
+            <textarea id="fraquezas" name="fraquezas" class="form-control">{{ $diagnostico->fraquezas }}</textarea>
         </div>
         <div class="mb-3">
             <label>Oportunidades</label>
-            <textarea id="oportunidades" name="oportunidades" class="form-control" rows="3">{{ $diagnostico->oportunidades }}</textarea>
+            <textarea id="oportunidades" name="oportunidades" class="form-control">{{ $diagnostico->oportunidades }}</textarea>
         </div>
         <div class="mb-3">
             <label>Ameaças</label>
-            <textarea id="ameacas" name="ameacas" class="form-control" rows="3">{{ $diagnostico->ameacas }}</textarea>
+            <textarea id="ameacas" name="ameacas" class="form-control">{{ $diagnostico->ameacas }}</textarea>
         </div>
 
+        {{-- ====== GRÁFICO SWOT ====== --}}
         <div class="card mt-4">
             <div class="card-header bg-primary text-white">
                 <h5 class="mb-0">Visualização da Matriz SWOT</h5>
             </div>
             <div class="card-body">
-                <canvas id="swotChart" height="280"></canvas>
+                <canvas id="swotChart" width="400" height="250"></canvas>
             </div>
         </div>
 
-        <div class="mt-4">
+        <h4 class="mt-4">Maturidade e Recursos</h4>
+        <div class="mb-3">
             <label>Nível de Maturidade</label>
-            <select name="nivel_maturidade" class="form-control mb-3">
+            <select name="nivel_maturidade" class="form-control">
                 @foreach(['Inicial','Repetível','Definido','Gerenciado','Otimizado'] as $nivel)
-                    <option value="{{ $nivel }}" {{ $diagnostico->nivel_maturidade == $nivel ? 'selected' : '' }}>{{ $nivel }}</option>
+                    <option value="{{ $nivel }}" {{ $diagnostico->nivel_maturidade == $nivel ? 'selected' : '' }}>
+                        {{ $nivel }}
+                    </option>
                 @endforeach
             </select>
-
-            <label>Recursos de TI</label>
-            <textarea name="recursos_ti" class="form-control mb-3">{{ $diagnostico->recursos_ti }}</textarea>
-
-            <label>Riscos Identificados</label>
-            <textarea name="riscos" class="form-control mb-4">{{ $diagnostico->riscos }}</textarea>
-
-            <button type="submit" class="btn btn-success">Atualizar</button>
-            <a href="{{ route('diagnosticos.index') }}" class="btn btn-secondary">Voltar</a>
         </div>
+        <div class="mb-3">
+            <label>Recursos de TI</label>
+            <textarea name="recursos_ti" class="form-control">{{ $diagnostico->recursos_ti }}</textarea>
+        </div>
+
+        <h4 class="mt-4">Riscos</h4>
+        <div class="mb-3">
+            <label>Riscos Identificados</label>
+            <textarea name="riscos" class="form-control">{{ $diagnostico->riscos }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Atualizar</button>
+        <a href="{{ route('diagnosticos.index') }}" class="btn btn-secondary">Voltar</a>
     </form>
 </div>
 
@@ -110,36 +121,36 @@ document.addEventListener("DOMContentLoaded", function() {
         data: {
             labels: ['Forças', 'Fraquezas', 'Oportunidades', 'Ameaças'],
             datasets: [{
-                label: 'Itens SWOT',
+                label: 'Qtd. de Itens',
                 data: dadosAtuais(),
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)'
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)'
                 ],
-                borderColor: '#333',
-                borderWidth: 1,
-                barThickness: 40
+                borderColor: '#444',
+                borderWidth: 1
             }]
         },
         options: {
+            indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
-                    text: 'Distribuição Atual SWOT',
-                    font: { size: 16 }
+                    text: 'Distribuição SWOT',
+                    font: { size: 13 },
+                    padding: { top: 5, bottom: 5 }
                 },
                 legend: { display: false }
             },
             scales: {
-                x: { beginAtZero: true },
-                y: {
-                    beginAtZero: true,
-                    ticks: { precision: 0 }
-                }
-            }
+                x: { beginAtZero: true, ticks: { font: { size: 10 } } },
+                y: { ticks: { font: { size: 11 } } }
+            },
+            layout: { padding: 5 }
         }
     });
 

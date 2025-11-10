@@ -24,9 +24,15 @@
             <p><strong>Oportunidades:</strong><br> {!! nl2br(e($diagnostico->oportunidades ?? '—')) !!}</p>
             <p><strong>Ameaças:</strong><br> {!! nl2br(e($diagnostico->ameacas ?? '—')) !!}</p>
 
-            {{-- ======= GRÁFICO SWOT ======= --}}
-            <h5 class="text-center mt-4 mb-3">Gráfico da Matriz SWOT</h5>
-            <canvas id="swotChart" width="400" height="250"></canvas>
+            {{-- ======= GRÁFICO SWOT (compacto) ======= --}}
+            <h6 class="text-center mt-4 mb-2">Gráfico da Matriz SWOT</h6>
+            <div class="text-center mb-3">
+                <div class="card shadow-sm mx-auto" style="max-width: 600px;">
+                    <div class="card-body p-2">
+                        <canvas id="swotChart" width="220" height="150" style="max-width: 100%; height: auto;"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -59,7 +65,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const ctx = document.getElementById('swotChart').getContext('2d');
 
-    // Função para contar o número de linhas ou itens em cada campo
     function contarItens(texto) {
         if (!texto) return 0;
         const linhas = texto.split(/\r?\n/).filter(l => l.trim() !== '');
@@ -78,39 +83,42 @@ document.addEventListener("DOMContentLoaded", function() {
         data: {
             labels: ['Forças', 'Fraquezas', 'Oportunidades', 'Ameaças'],
             datasets: [{
-                label: 'Quantidade de Itens',
+                label: 'Qtd. de Itens',
                 data: [dados.forcas, dados.fraquezas, dados.oportunidades, dados.ameacas],
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.7)',   // Forças
-                    'rgba(255, 99, 132, 0.7)',   // Fraquezas
-                    'rgba(54, 162, 235, 0.7)',   // Oportunidades
-                    'rgba(255, 206, 86, 0.7)'    // Ameaças
+                    'rgba(75, 192, 192, 0.75)',
+                    'rgba(255, 99, 132, 0.75)',
+                    'rgba(54, 162, 235, 0.75)',
+                    'rgba(255, 206, 86, 0.75)'
                 ],
-                borderColor: '#333',
-                borderWidth: 1
+                borderColor: '#444',
+                borderWidth: 1,
+                barThickness: 25
             }]
         },
         options: {
-            indexAxis: 'y', // Torna o gráfico horizontal
+            indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
                     text: 'Distribuição SWOT',
-                    font: { size: 16 }
+                    font: { size: 13 },
+                    padding: { top: 4, bottom: 4 }
                 },
-                legend: {
-                    display: false
-                }
+                legend: { display: false }
             },
             scales: {
                 x: {
                     beginAtZero: true,
-                    ticks: {
-                        precision: 0
-                    }
+                    ticks: { font: { size: 10 }, precision: 0 }
+                },
+                y: {
+                    ticks: { font: { size: 11 } }
                 }
-            }
+            },
+            layout: { padding: 4 }
         }
     });
 });
