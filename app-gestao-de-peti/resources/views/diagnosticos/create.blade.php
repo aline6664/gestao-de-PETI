@@ -32,21 +32,33 @@
         </div>
 
         <h4 class="mt-4">Análise SWOT</h4>
+        <p class="text-muted"><small>Cada linha (pressionar Enter) adiciona um novo item ao gráfico automaticamente.</small></p>
+
         <div class="mb-3">
             <label>Forças</label>
-            <textarea name="forcas" class="form-control">{{ old('forcas') }}</textarea>
+            <textarea id="forcas" name="forcas" class="form-control" rows="3">{{ old('forcas') }}</textarea>
         </div>
         <div class="mb-3">
             <label>Fraquezas</label>
-            <textarea name="fraquezas" class="form-control">{{ old('fraquezas') }}</textarea>
+            <textarea id="fraquezas" name="fraquezas" class="form-control" rows="3">{{ old('fraquezas') }}</textarea>
         </div>
         <div class="mb-3">
             <label>Oportunidades</label>
-            <textarea name="oportunidades" class="form-control">{{ old('oportunidades') }}</textarea>
+            <textarea id="oportunidades" name="oportunidades" class="form-control" rows="3">{{ old('oportunidades') }}</textarea>
         </div>
         <div class="mb-3">
             <label>Ameaças</label>
-            <textarea name="ameacas" class="form-control">{{ old('ameacas') }}</textarea>
+            <textarea id="ameacas" name="ameacas" class="form-control" rows="3">{{ old('ameacas') }}</textarea>
+        </div>
+
+        {{-- ====== GRÁFICO SWOT ====== --}}
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Visualização da Matriz SWOT</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="swotChart" height="280"></canvas>
+            </div>
         </div>
 
         <h4 class="mt-4">Maturidade e Recursos</h4>
@@ -74,4 +86,78 @@
         <a href="{{ route('diagnosticos.index') }}" class="btn btn-secondary">Voltar</a>
     </form>
 </div>
+
+{{-- Script do gráfico SWOT --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const ctx = document.getElementById('swotChart').getContext('2d');
+
+    function contarItens(texto) {
+        if (!texto) return 0;
+        return texto.split(/\r?\n/).filter(l => l.trim() !== '').length || 0;
+    }
+
+    const campos = {
+        forcas: document.getElementById('forcas'),
+        fraquezas: document.getElementById('fraquezas'),
+        oportunidades: document.getElementById('oportunidades'),
+        ameacas: document.getElementById('ameacas')
+    };
+
+    function dadosAtuais() {
+        return [
+            contarItens(campos.forcas.value),
+            contarItens(campos.fraquezas.value),
+            contarItens(campos.oportunidades.value),
+            contarItens(campos.ameacas.value)
+        ];
+    }
+
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Forças', 'Fraquezas', 'Oportunidades', 'Ameaças'],
+            datasets: [{
+                label: 'Itens SWOT',
+                data: dadosAtuais(),
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)'
+                ],
+                borderColor: '#333',
+                borderWidth: 1,
+                barThickness: 40
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Distribuição Atual SWOT',
+                    font: { size: 16 }
+                },
+                legend: { display: false }
+            },
+            scales: {
+                x: { beginAtZero: true },
+                y: {
+                    beginAtZero: true,
+                    ticks: { precision: 0 }
+                }
+            }
+        }
+    });
+
+    Object.values(campos).forEach(campo => {
+        campo.addEventListener('input', () => {
+            chart.data.datasets[0].data = dadosAtuais();
+            chart.update('none');
+        });
+    });
+});
+</script>
 @endsection
