@@ -13,7 +13,6 @@ class DiagnosticoTI extends Model
     protected $table = 'diagnosticos_ti';
 
     protected $fillable = [
-        'empresa_id',
         'forcas',
         'fraquezas',
         'oportunidades',

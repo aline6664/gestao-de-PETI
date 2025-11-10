@@ -16,12 +16,11 @@ use App\Http\Controllers\EmpresaController;
 */
 
 // Página inicial
-Route::get('/', function () {
-    return view('layouts/app');
-});
+Route::get('/', [EmpresaController::class, 'index'])->name('home');
 
-// ROTAS DE EMPRESAS
-Route::resource('empresas', EmpresaController::class);
+// ROTA DE DADOS DA EMPRESA
+Route::get('/empresa', [EmpresaController::class, 'index'])->name('empresa.index');
+Route::put('/empresa', [EmpresaController::class, 'update'])->name('empresa.update');
 
 // ROTAS DE DIAGNÓSTICO DE TI
 Route::resource('diagnosticos', DiagnosticoTIController::class);

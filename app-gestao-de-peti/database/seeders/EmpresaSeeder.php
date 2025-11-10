@@ -12,6 +12,17 @@ class EmpresaSeeder extends Seeder
      */
     public function run(): void
     {
-        Empresa::factory()->count(10)->create();
-    }
+        Empresa::create([
+            'nome_empresa' => 'MBATEC Tecnologia LTDA',
+            'cnpj' => '00.000.000/0001-00',
+            'endereco' => 'Rua Exemplo, 123',
+            'cidade' => 'São Paulo',
+            'estado' => 'SP',
+            'telefone' => '(11) 99999-9999',
+            'email_contato' => 'contato@mbatec.com.br',
+            'missao' => 'Oferecer soluções de TI inovadoras.',
+            'visao' => 'Ser referência em tecnologia e gestão de TI.',
+            'valores' => 'Inovação, Ética, Excelência',
+        ]);
+    }    
 }

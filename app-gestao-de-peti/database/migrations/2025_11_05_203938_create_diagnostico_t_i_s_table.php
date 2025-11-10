@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('diagnosticos_ti', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('empresa_id')->constrained('empresas')->onDelete('cascade'); // certifica que o ID estrangeiro existe, e que
-                                                                                //  se ela for deletada, a tabela inteira relacionada também é.
             $table->text('forcas')->nullable();
             $table->text('fraquezas')->nullable();
             $table->text('oportunidades')->nullable();

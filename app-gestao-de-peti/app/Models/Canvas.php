@@ -13,7 +13,6 @@ class Canvas extends Model
                                    // Evita conflito com plural irregular do Laravel
 
     protected $fillable = [
-        'empresa_id',
         'proposta_valor',
         'segmentos_clientes',
         'canais_distribuicao',

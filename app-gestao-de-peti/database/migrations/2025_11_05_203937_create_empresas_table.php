@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nome_empresa');
             $table->string('cnpj');
-            $table->string('endereco');
-            $table->string('cidade');
-            $table->string('estado');
-            $table->string('telefone');
-            $table->string('email_contato');
+            $table->string('endereco')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('email_contato')->nullable();
             $table->text('missao')->nullable();
             $table->text('visao')->nullable();
             $table->text('valores')->nullable();

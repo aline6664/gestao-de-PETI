@@ -2,73 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empresa;
 use Illuminate\Http\Request;
+use App\Models\Empresa;
 
 class EmpresaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Exibe a página com os dados da organização.
      */
     public function index()
     {
-        $empresas = Empresa::all();
-        return view('empresas.index', compact('empresas'));
+        // Garante que sempre exista uma empresa (a primeira registrada)
+        $empresa = Empresa::first();
+
+        // Caso ainda não exista, cria uma empresa “vazia” na primeira execução
+        if (!$empresa) {
+            $empresa = Empresa::create([
+                'nome_empresa' => 'Minha Empresa',
+                'cnpj' => null,
+                'email_contato' => null,
+                'nome_empresa' => 'Minha Empresa',
+                'cnpj' => null,
+                'email_contato' => null,
+                'endereco' => null,
+                'cidade' => null,
+                'estado' => null,
+                'telefone' => null,
+                'missao' => null,
+                'visao' => null,
+                'valores' => null,
+            ]);
+        }
+
+        return view('empresa.index', compact('empresa'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Atualiza as informações da organização.
      */
-    public function create()
+    public function update(Request $request)
     {
-        return view('empresas.create');
-    }
+        $empresa = Empresa::firstOrFail();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
         $request->validate([
             'nome_empresa' => 'required|string|max:255',
             'cnpj' => 'nullable|string|max:20',
             'email_contato' => 'nullable|email',
+            'endereco' => 'nullable|string|max:255',
+            'cidade' => 'nullable|string|max:100',
+            'estado' => 'nullable|string|max:100',
+            'telefone' => 'nullable|string|max:30',
+            'missao' => 'nullable|string',
+            'visao' => 'nullable|string',
+            'valores' => 'nullable|string',
         ]);
 
-        Empresa::create($request->all());
-        return redirect()->route('empresas.index')->with('success', 'Empresa cadastrada com sucesso!');
-    }
+        $empresa->update($request->all());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Empresa $empresa)
-    {
-        return view('empresas.show', compact('empresa'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Empresa $empresa)
-    {
-        return view('empresas.edit', compact('empresa'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Empresa $empresa)
-    {
-        return redirect()->route('empresas.index')->with('success', 'Empresa atualizada com sucesso!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Empresa $empresa)
-    {
-        $empresa->delete();
-        return redirect()->route('empresas.index')->with('success', 'Empresa excluída com sucesso!');
+        return redirect()
+            ->route('empresa.index')
+            ->with('success', 'Dados da organização atualizados com sucesso!');
     }
 }

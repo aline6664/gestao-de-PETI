@@ -12,7 +12,7 @@
     {{-- Navbar principal --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url('/') }}">Gestão PETI</a>
+            <a class="navbar-brand fw-bold" href="{{ url('/') }}">Painel de Controle PETI</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,7 +20,7 @@
             {{-- Navbar secundário para telas menores --}}
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="{{ route('empresas.index') }}" class="nav-link">Empresas</a></li>
+                    <li class="nav-item"><a href="{{ route('empresa.index') }}" class="nav-link">Minha Empresa</a></li>
                     <li class="nav-item"><a href="{{ route('diagnosticos.index') }}" class="nav-link">Diagnóstico</a></li>
                     <li class="nav-item"><a href="{{ route('canvas.index') }}" class="nav-link">Canvas</a></li>
                 </ul>

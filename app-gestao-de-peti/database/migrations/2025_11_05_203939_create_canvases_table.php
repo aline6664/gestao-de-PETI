@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('canvases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('empresa_id')->constrained('empresas')->onDelete('cascade');
             $table->text('proposta_valor')->nullable();
             $table->text('segmentos_clientes')->nullable();
             $table->text('canais_distribuicao')->nullable();

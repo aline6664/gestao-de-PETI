@@ -22,20 +22,4 @@ class Empresa extends Model
         'visao',
         'valores',
     ];
-
-    /**
-     * Uma empresa possui um Diagnóstico de TI.
-     */
-    public function diagnostico()
-    {
-        return $this->hasOne(DiagnosticoTI::class);
-    }
-
-    /**
-     * Uma empresa possui um Canvas.
-     */
-    public function canvas()
-    {
-        return $this->hasOne(Canvas::class);
-    }
 }
