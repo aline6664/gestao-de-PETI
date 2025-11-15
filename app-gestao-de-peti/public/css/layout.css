@@ -1,0 +1,19 @@
+:root {
+  --primary: #204e80;
+  --secondary: #c9c9cc;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll
+}
+
+main {
+  flex-grow: 1;
+}

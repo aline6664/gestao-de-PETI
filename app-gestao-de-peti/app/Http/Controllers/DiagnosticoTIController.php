@@ -38,6 +38,7 @@ class DiagnosticoTIController extends Controller
      */
     public function update(Request $request)
     {
+        /*
         $request->validate([
             'nivel_maturidade' => 'nullable|string',
             'forcas'           => 'nullable|string',
@@ -47,14 +48,22 @@ class DiagnosticoTIController extends Controller
             'recursos_ti'      => 'nullable|string',
             'riscos'           => 'nullable|string',
         ]);
-
+        */
         $diagnostico = DiagnosticoTI::first();
 
         if (!$diagnostico) {
             $diagnostico = DiagnosticoTI::create([]);
         }
 
-        $diagnostico->update($request->all());
+        $diagnostico->update([
+            'forcas' => $request->forcas ?? [],
+            'fraquezas' => $request->fraquezas ?? [],
+            'oportunidades' => $request->oportunidades ?? [],
+            'ameacas' => $request->ameacas ?? [],
+            'nivel_maturidade' => $request->nivel_maturidade,
+            'recursos_ti' => $request->recursos_ti ?? [],
+            'riscos' => $request->riscos ?? [],
+        ]);
 
         return redirect()->route('diagnostico.index')
                          ->with('success', 'Diagnóstico atualizado com sucesso!');

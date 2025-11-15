@@ -6,6 +6,7 @@
 <form action="{{ route('empresas.update', $empresa->id) }}" method="POST" class="mt-3">
     @csrf
     @method('PUT')
+    
     <div class="row mb-3">
         <div class="col">
             <label>Nome da Empresa</label>

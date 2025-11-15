@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\DiagnosticoTI;
-use App\Models\Empresa;
 
 class DiagnosticoTISeeder extends Seeder
 {
@@ -12,36 +11,47 @@ class DiagnosticoTISeeder extends Seeder
     {
         DiagnosticoTI::create([
             // SWOT
-            'forcas' => "• Equipe de TI qualificada  
-            • Boa infraestrutura de servidores  
-            • Cultura interna aberta a inovação",
+            'forcas' => [
+                "Equipe de TI qualificada",
+                "Boa infraestrutura de servidores",
+                "Cultura interna aberta à inovação",
+                "Processos de TI alinhados ao negócio"
+            ],
 
-            'fraquezas' => "• Processos pouco documentados  
-            • Baixa automação de rotinas  
-            • Falta de padronização nas ferramentas utilizadas",
+            'fraquezas' => [
+                "Processos pouco documentados",
+                "Baixa automação de rotinas",
+                "Dependência de sistemas antigos"
+            ],
 
-            'oportunidades' => "• Adoção de computação em nuvem  
-            • Crescimento da empresa exige mais tecnologia  
-            • Possibilidade de parcerias com fornecedores",
+            'oportunidades' => [
+                "Adoção de computação em nuvem",
+                "Crescimento da empresa exige mais tecnologia",
+                "Possibilidade de parcerias com fornecedores de TI"
+            ],
 
-            'ameacas' => "• Ataques cibernéticos cada vez mais sofisticados  
-            • Concorrentes investindo pesado em TI  
-            • Dependência de sistemas legados",
+            'ameacas' => [
+                "Ataques cibernéticos cada vez mais sofisticados",
+                "Concorrência investindo forte em tecnologia",
+                "Risco de indisponibilidade por infraestrutura antiga"
+            ],
 
-            // Maturidade
-            'nivel_maturidade' => 'Inicial / Baixa',
+            'nivel_maturidade' => 'Inicial',
 
-            // Recursos de TI
-            'recursos_ti' => "• 12 computadores  
-            • 2 servidores físicos  
-            • Sistemas internos próprios  
-            • Internet dedicada de 300 Mbps  
-            • Firewall básico e antivírus corporativo",
+            'recursos_ti' => [
+                "12 computadores",
+                "2 servidores físicos",
+                "Sistema interno próprio",
+                "Internet dedicada de 300 Mbps",
+                "Firewall corporativo",
+                "Antivírus empresarial"
+            ],
 
-            // Riscos identificados
-            'riscos' => "• Falha de segurança por falta de monitoramento  
-            • Risco de indisponibilidade por infraestrutura antiga  
-            • Processos sem backup adequado",
+            'riscos' => [
+                "Falta de monitoramento contínuo",
+                "Backup insuficiente",
+                "Dependência de ferramentas sem contrato de suporte"
+            ]
         ]);
     }
 }

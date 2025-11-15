@@ -13,13 +13,20 @@ return new class extends Migration
     {
         Schema::create('diagnosticos_ti', function (Blueprint $table) {
             $table->id();
-            $table->text('forcas')->nullable();
-            $table->text('fraquezas')->nullable();
-            $table->text('oportunidades')->nullable();
-            $table->text('ameacas')->nullable();
+
+            // SWOT agora em JSON
+            $table->json('forcas')->nullable();
+            $table->json('fraquezas')->nullable();
+            $table->json('oportunidades')->nullable();
+            $table->json('ameacas')->nullable();
+
+            // Maturidade
             $table->string('nivel_maturidade')->nullable();
-            $table->text('recursos_ti')->nullable();
-            $table->text('riscos')->nullable();
+
+            // Recursos e riscos também em JSON
+            $table->json('recursos_ti')->nullable();
+            $table->json('riscos')->nullable();
+
             $table->timestamps();
         });
     }
