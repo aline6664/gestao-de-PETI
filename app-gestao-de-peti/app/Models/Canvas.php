@@ -9,26 +9,18 @@ class Canvas extends Model
 {
     use HasFactory;
 
-    protected $table = 'canvases'; // Laravel pluraliza automaticamente “canvas” assim
-                                   // Evita conflito com plural irregular do Laravel
+    protected $table = 'canvases';
 
     protected $fillable = [
-        'proposta_valor',
-        'segmentos_clientes',
-        'canais_distribuicao',
-        'relacionamento_clientes',
-        'fontes_receita',
-        'recursos_chave',
-        'atividades_chave',
-        'parcerias_chave',
-        'estrutura_custos',
-    ];
-
-    /**
-     * Um Canvas pertence a uma empresa.
-     */
-    public function empresa()
-    {
-        return $this->belongsTo(Empresa::class);
-    }
+    'empresa_id',
+    'proposta_valor',
+    'segmentos_clientes',
+    'canais_distribuicao',
+    'relacionamento_clientes',
+    'fontes_receita',
+    'recursos_chave',
+    'atividades_chave',
+    'parcerias_chave',
+    'estrutura_custos',
+];
 }

@@ -29,7 +29,12 @@ Route::put('/diagnostico', [DiagnosticoTIController::class, 'update'])->name('di
 
 
 // ROTAS DO BUSINESS MODEL CANVAS
-Route::resource('canvas', CanvasController::class);
+// ROTAS DO BUSINESS MODEL CANVAS
+Route::get('/canvas', [CanvasController::class, 'index'])->name('canvas.index');
+Route::get('/canvas/editar', [CanvasController::class, 'edit'])->name('canvas.edit');
+Route::put('/canvas/editar', [CanvasController::class, 'update'])->name('canvas.update');
+
+
 
 /*
     TEMPLATE PARA CADA ROTA, vale para 'diagnosticos' e 'canvas' também
