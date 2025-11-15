@@ -23,7 +23,10 @@ Route::get('/empresa', [EmpresaController::class, 'index'])->name('empresa.index
 Route::put('/empresa', [EmpresaController::class, 'update'])->name('empresa.update');
 
 // ROTAS DE DIAGNÓSTICO DE TI
-Route::resource('diagnosticos', DiagnosticoTIController::class);
+Route::get('/diagnostico', [DiagnosticoTIController::class, 'index'])->name('diagnostico.index');
+Route::get('/diagnostico/editar', [DiagnosticoTIController::class, 'edit'])->name('diagnostico.edit');
+Route::put('/diagnostico', [DiagnosticoTIController::class, 'update'])->name('diagnostico.update');
+
 
 // ROTAS DO BUSINESS MODEL CANVAS
 Route::resource('canvas', CanvasController::class);

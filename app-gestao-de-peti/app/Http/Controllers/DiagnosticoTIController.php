@@ -8,52 +8,55 @@ use Illuminate\Http\Request;
 
 class DiagnosticoTIController extends Controller
 {
+    /**
+     * Mostra o diagnóstico único.
+     * Se não existir, cria automaticamente.
+     */
     public function index()
     {
-        $diagnosticos = DiagnosticoTI::with('empresa')->get();
-        return view('diagnosticos.index', compact('diagnosticos'));
-    }
+        $diagnostico = DiagnosticoTI::first();
+        $empresa = Empresa::first();
 
-    public function create()
+        return view('diagnostico.index', compact('diagnostico', 'empresa'));
+    }
+    /**
+     * Mostra o formulário de edição do diagnóstico único.
+     */
+    public function edit()
     {
-        $empresas = Empresa::all();
-        return view('diagnosticos.create', compact('empresas'));
+        $diagnostico = DiagnosticoTI::first();
+
+        if (!$diagnostico) {
+            $diagnostico = DiagnosticoTI::create([]);
+        }
+
+        return view('diagnostico.edit', compact('diagnostico'));
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'empresa_id' => 'required|exists:empresas,id',
-        ]);
-
-        DiagnosticoTI::create($request->all());
-        return redirect()->route('diagnosticos.index')->with('success', 'Diagnóstico criado com sucesso!');
-    }
-
-    public function show(DiagnosticoTI $diagnostico)
-    {
-        return view('diagnosticos.show', compact('diagnostico'));
-    }
-
-    public function edit(DiagnosticoTI $diagnostico)
-    {
-        $empresas = Empresa::all();
-        return view('diagnosticos.edit', compact('diagnostico', 'empresas'));
-    }
-
-    public function update(Request $request, DiagnosticoTI $diagnostico)
+    /**
+     * Atualiza o diagnóstico único.
+     */
+    public function update(Request $request)
     {
         $request->validate([
-            'empresa_id' => 'required|exists:empresas,id',
+            'nivel_maturidade' => 'nullable|string',
+            'forcas'           => 'nullable|string',
+            'fraquezas'        => 'nullable|string',
+            'oportunidades'    => 'nullable|string',
+            'ameacas'          => 'nullable|string',
+            'recursos_ti'      => 'nullable|string',
+            'riscos'           => 'nullable|string',
         ]);
+
+        $diagnostico = DiagnosticoTI::first();
+
+        if (!$diagnostico) {
+            $diagnostico = DiagnosticoTI::create([]);
+        }
 
         $diagnostico->update($request->all());
-        return redirect()->route('diagnosticos.index')->with('success', 'Diagnóstico atualizado com sucesso!');
-    }
 
-    public function destroy(DiagnosticoTI $diagnostico)
-    {
-        $diagnostico->delete();
-        return redirect()->route('diagnosticos.index')->with('success', 'Diagnóstico excluído com sucesso!');
+        return redirect()->route('diagnostico.index')
+                         ->with('success', 'Diagnóstico atualizado com sucesso!');
     }
 }

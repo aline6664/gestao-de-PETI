@@ -21,12 +21,4 @@ class DiagnosticoTI extends Model
         'recursos_ti',
         'riscos',
     ];
-
-    /**
-     * Um diagnóstico pertence a uma empresa.
-     */
-    public function empresa()
-    {
-        return $this->belongsTo(Empresa::class);
-    }
 }

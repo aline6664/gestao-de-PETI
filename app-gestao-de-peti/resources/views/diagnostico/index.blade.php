@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <h2 class="mb-4">
-        Diagnóstico de TI — {{ $diagnostico->empresa->nome_empresa ?? 'Sem empresa vinculada' }}
+        Diagnóstico de TI — {{ $empresa->nome_empresa }}
     </h2>
 
     <div class="mb-3">
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <a href="{{ route('diagnosticos.index') }}" class="btn btn-secondary mt-3">Voltar</a>
+    <a href="{{ route('diagnostico.edit') }}" class="btn btn-secondary mt-3">Editar</a>
 </div>
 
 {{-- ===================== CHART.JS ===================== --}}
