@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Canvas extends Model
 {
-    use HasFactory;
-
-    protected $table = 'canvases'; // Laravel pluraliza automaticamente “canvas” assim
-                                   // Evita conflito com plural irregular do Laravel
+    protected $table = 'canvases';
 
     protected $fillable = [
         'proposta_valor',
@@ -22,13 +19,18 @@ class Canvas extends Model
         'atividades_chave',
         'parcerias_chave',
         'estrutura_custos',
+        'empresa_id',
     ];
 
-    /**
-     * Um Canvas pertence a uma empresa.
-     */
-    public function empresa()
-    {
-        return $this->belongsTo(Empresa::class);
-    }
+    protected $casts = [
+        'proposta_valor' => 'array',
+        'segmentos_clientes' => 'array',
+        'canais_distribuicao' => 'array',
+        'relacionamento_clientes' => 'array',
+        'fontes_receita' => 'array',
+        'recursos_chave' => 'array',
+        'atividades_chave' => 'array',
+        'parcerias_chave' => 'array',
+        'estrutura_custos' => 'array',
+    ];
 }

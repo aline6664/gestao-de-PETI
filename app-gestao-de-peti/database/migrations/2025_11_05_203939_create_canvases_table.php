@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('canvases', function (Blueprint $table) {
             $table->id();
-            $table->text('proposta_valor')->nullable();
-            $table->text('segmentos_clientes')->nullable();
-            $table->text('canais_distribuicao')->nullable();
-            $table->text('relacionamento_clientes')->nullable();
-            $table->text('fontes_receita')->nullable();
-            $table->text('recursos_chave')->nullable();
-            $table->text('atividades_chave')->nullable();
-            $table->text('parcerias_chave')->nullable();
-            $table->text('estrutura_custos')->nullable();
+            $table->json('proposta_valor')->nullable();
+            $table->json('segmentos_clientes')->nullable();
+            $table->json('canais_distribuicao')->nullable();
+            $table->json('relacionamento_clientes')->nullable();
+            $table->json('fontes_receita')->nullable();
+            $table->json('recursos_chave')->nullable();
+            $table->json('atividades_chave')->nullable();
+            $table->json('parcerias_chave')->nullable();
+            $table->json('estrutura_custos')->nullable();
             $table->timestamps();
         });
     }

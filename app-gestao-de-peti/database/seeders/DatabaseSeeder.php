@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EmpresaSeeder::class,
             DiagnosticoTISeeder::class,
+            CanvasSeeder::class
         ]);
     }
 }

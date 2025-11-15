@@ -23,8 +23,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="{{ route('empresa.index') }}" class="nav-link">Minha Empresa</a></li>
-                    <li class="nav-item"><a href="{{ route('diagnostico.index') }}" class="nav-link">Diagnóstico</a></li>
-                    <li class="nav-item"><a href="{{ route('canvas.index') }}" class="nav-link">Canvas</a></li>
+                    <li class="nav-item"><a href="{{ route('diagnostico.index') }}" class="nav-link">Diagnóstico de TI</a></li>
+                    <li class="nav-item"><a href="{{ route('canvas.index') }}" class="nav-link">Business Model Canvas</a></li>
                 </ul>
             </div>
         </div>
