@@ -10,19 +10,13 @@ class CanvasController extends Controller
 {
     public function index()
     {
-        $canvas = Canvas::first(); // único canvas
+        $canvas = Canvas::first(); // único canva
         return view('canvas.index', compact('canvas'));
     }
 
     public function edit()
     {
         $canvas = Canvas::first();
-        return view('canvas.edit', compact('canvas'));
-    }
-
-    public function update(Request $request)
-    {
-        $canvas = Canvas::firstOrFail();
 
         $jsonFields = [
             'proposta_valor',
