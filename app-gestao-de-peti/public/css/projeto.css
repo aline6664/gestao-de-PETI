@@ -1,0 +1,15 @@
+.card-header-color {
+    background-color: var(--button-blue);
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-blue {
+    background-color: var(--button-blue);
+    color: #fff;
+}
+
+.btn-blue:hover {
+    background-color: var(--button-blue-hover);
+    color: #fff;
+}

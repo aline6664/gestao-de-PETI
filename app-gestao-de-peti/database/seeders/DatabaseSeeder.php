@@ -27,7 +27,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EmpresaSeeder::class,
             DiagnosticoTISeeder::class,
-            CanvasSeeder::class
+            CanvasSeeder::class,
+            ProjetosSeeder::class,
+            ProjetoAtividadesSeeder::class,
+            ProjetoMetasSeeder::class,
+            ProjetoIndicadoresSeeder::class,
+            ProjetoCronogramasSeeder::class,
         ]);
     }
 }

@@ -46,9 +46,9 @@
             </a>
         </div>
 
-        {{-- Projetos (inacabado) --}}
+        {{-- Projetos --}}
         <div class="col-md-4 mb-3">
-            <a href="/home" class="card card-link shadow-sm home-card">
+            <a href="/projetos" class="card card-link shadow-sm home-card">
                 <div class="card-body text-center">
                     <h4 class="card-title fw-bold">Projetos do PETI</h4>
                     <p>Controle de ações e cronogramas</p>

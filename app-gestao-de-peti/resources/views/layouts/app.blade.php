@@ -25,6 +25,7 @@
                     <li class="nav-item"><a href="{{ route('empresa.index') }}" class="nav-link">Minha Empresa</a></li>
                     <li class="nav-item"><a href="{{ route('diagnostico.index') }}" class="nav-link">Diagnóstico de TI</a></li>
                     <li class="nav-item"><a href="{{ route('canvas.index') }}" class="nav-link">Business Model Canvas</a></li>
+                    <li class="nav-item"><a href="{{ route('projetos.index') }}" class="nav-link">Projetos</a></li>
                 </ul>
             </div>
         </div>
