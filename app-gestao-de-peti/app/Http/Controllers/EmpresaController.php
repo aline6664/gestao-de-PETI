@@ -8,33 +8,31 @@ use App\Models\Empresa;
 class EmpresaController extends Controller
 {
     /**
-     * Exibe a página com os dados da organização.
+     * Exibe os dados da organização (somente leitura).
      */
     public function index()
     {
-        // Garante que sempre exista uma empresa (a primeira registrada)
+        // Busca a primeira empresa
         $empresa = Empresa::first();
 
-        // Caso ainda não exista, cria uma empresa “vazia” na primeira execução
+        // Caso não exista nenhuma, cria uma vazia, mas sem sobrescrever valores do seeder
         if (!$empresa) {
             $empresa = Empresa::create([
                 'nome_empresa' => 'Minha Empresa',
-                'cnpj' => null,
-                'email_contato' => null,
-                'nome_empresa' => 'Minha Empresa',
-                'cnpj' => null,
-                'email_contato' => null,
-                'endereco' => null,
-                'cidade' => null,
-                'estado' => null,
-                'telefone' => null,
-                'missao' => null,
-                'visao' => null,
-                'valores' => null,
             ]);
         }
 
         return view('empresa.index', compact('empresa'));
+    }
+
+    /**
+     * Exibe o formulário de edição.
+     */
+    public function edit()
+    {
+        $empresa = Empresa::firstOrFail();
+
+        return view('empresa.edit', compact('empresa'));
     }
 
     /**
@@ -46,7 +44,7 @@ class EmpresaController extends Controller
 
         $request->validate([
             'nome_empresa' => 'required|string|max:255',
-            'cnpj' => 'nullable|string|max:20',
+            'cnpj' => 'required|string|max:20',
             'email_contato' => 'nullable|email',
             'endereco' => 'nullable|string|max:255',
             'cidade' => 'nullable|string|max:100',
@@ -61,6 +59,6 @@ class EmpresaController extends Controller
 
         return redirect()
             ->route('empresa.index')
-            ->with('success', 'Dados da organização atualizados com sucesso!');
+            ->with('success', 'Dados atualizados com sucesso!');
     }
 }

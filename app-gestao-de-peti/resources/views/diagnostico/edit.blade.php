@@ -33,7 +33,7 @@
                     </div>
                     @endforeach
                 </div>
-                <button type="button" class="btn btn-primary add-item" data-target="forcas">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="forcas">+ Adicionar</button>
             </div>
 
             {{-- FRAQUEZAS --}}
@@ -47,7 +47,7 @@
                     </div>
                     @endforeach
                 </div>
-                <button type="button" class="btn btn-primary add-item" data-target="fraquezas">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="fraquezas">+ Adicionar</button>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
                     </div>
                     @endforeach
                 </div>
-                <button type="button" class="btn btn-primary add-item" data-target="oportunidades">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="oportunidades">+ Adicionar</button>
             </div>
 
             {{-- AMEAÇAS --}}
@@ -78,7 +78,7 @@
                     </div>
                     @endforeach
                 </div>
-                <button type="button" class="btn btn-primary add-item" data-target="ameacas">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="ameacas">+ Adicionar</button>
             </div>
         </div>
 
@@ -91,6 +91,21 @@
                 </div>
             </div>
         </div>
+
+        {{-- ===================== NÍVEL DE MATURIDADE ===================== --}}
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <label class="fw-bold" style="font-size: 20px">Nível de Maturidade</label>
+                <select name="nivel_maturidade" class="form-control">
+                    @foreach(['Inicial', 'Repetível', 'Definido', 'Gerenciado', 'Otimizado'] as $nivel)
+                        <option value="{{ $nivel }}" 
+                            {{ $diagnostico->nivel_maturidade === $nivel ? 'selected' : '' }}>
+                            {{ $nivel }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div> 
 
         {{-- ===================== RECURSOS E RISCOS ===================== --}}
         <div class="row">
@@ -105,7 +120,7 @@
                     </div>
                     @endforeach
                 </div>
-                <button type="button" class="btn btn-primary add-item" data-target="recursos_ti">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="recursos_ti">+ Adicionar</button>
             </div>
 
             {{-- RISCOS --}}
@@ -119,14 +134,14 @@
                     </div>
                     @endforeach
                 </div>
-                <button type="button" class="btn btn-primary add-item" data-target="riscos">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="riscos">+ Adicionar</button>
             </div>
         </div>
 
         {{-- ===================== BOTÕES ===================== --}}
         <div class="mt-4 d-flex gap-2">
-            <a href="{{ route('diagnostico.index') }}" class="btn btn-secondary">Voltar</a>
             <button type="submit" class="btn btn-success">Salvar Alterações</button>
+            <a href="{{ route('diagnostico.index') }}" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
     

@@ -1,72 +1,80 @@
 @extends('layouts.app')
 @section('title', 'Minha Organização')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/empresa.css') }}">
+@endsection
+
 @section('content')
-<div class="container">
-    <h2 class="mb-4">Dados da Organização</h2>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+<div class="container mt-4">
 
-    <form action="{{ route('empresa.update') }}" method="POST">
-        @csrf
-        @method('PUT')
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="page-title">Dados da Organização</h2>
+        <a href="{{ route('empresa.edit') }}" class="btn btn-blue">
+            Editar Informações
+        </a>
+    </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label>Nome da Empresa</label>
-                <input type="text" name="nome_empresa" class="form-control" value="{{ old('nome_empresa', $empresa->nome_empresa) }}" required>
-                {{-- old() -> reter valores após erro de validação.--}}
-            </div>
-            <div class="col-md-6">
-                <label>CNPJ</label>
-                <input type="text" name="cnpj" class="form-control" value="{{ old('cnpj', $empresa->cnpj) }}">
-            </div>
-        </div>
+    <div class="row">
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label>Email de Contato</label>
-                <input type="email" name="email_contato" class="form-control" value="{{ old('email_contato', $empresa->email_contato) }}">
-            </div>
-            <div class="col-md-6">
-                <label>Telefone</label>
-                <input type="text" name="telefone" class="form-control" value="{{ old('telefone', $empresa->telefone) }}">
+        {{-- Dados Básicos --}}
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm empresa-card">
+                <div class="card-header-color card-header">Informações Básicas</div>
+                <div class="card-body">
+                    <p><strong>Nome da Empresa:</strong> {{ $empresa->nome_empresa }}</p>
+                    <p><strong>CNPJ:</strong> {{ $empresa->cnpj ?? '—' }}</p>
+                    <p><strong>Email:</strong> {{ $empresa->email_contato ?? '—' }}</p>
+                    <p><strong>Telefone:</strong> {{ $empresa->telefone ?? '—' }}</p>
+                </div>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-8">
-                <label>Endereço</label>
-                <input type="text" name="endereco" class="form-control" value="{{ old('endereco', $empresa->endereco) }}">
-            </div>
-            <div class="col-md-2">
-                <label>Cidade</label>
-                <input type="text" name="cidade" class="form-control" value="{{ old('cidade', $empresa->cidade) }}">
-            </div>
-            <div class="col-md-2">
-                <label>Estado</label>
-                <input type="text" name="estado" class="form-control" value="{{ old('estado', $empresa->estado) }}">
+        {{-- Endereço --}}
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm empresa-card">
+                <div class="card-header-color card-header">Endereço</div>
+                <div class="card-body">
+                    <p><strong>Endereço:</strong> {{ $empresa->endereco ?? '—' }}</p>
+                    <p><strong>Cidade:</strong> {{ $empresa->cidade ?? '—' }}</p>
+                    <p><strong>Estado:</strong> {{ $empresa->estado ?? '—' }}</p>
+                </div>
             </div>
         </div>
 
-        <div class="mb-3">
-            <label>Missão</label>
-            <textarea name="missao" class="form-control" rows="2">{{ old('missao', $empresa->missao) }}</textarea>
+        {{-- Missão --}}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm empresa-card">
+                <div class="card-header-color card-header">Missão</div>
+                <div class="card-body">
+                    <p>{{ $empresa->missao ?? '—' }}</p>
+                </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label>Visão</label>
-            <textarea name="visao" class="form-control" rows="2">{{ old('visao', $empresa->visao) }}</textarea>
+        {{-- Visão --}}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm empresa-card">
+                <div class="card-header-color card-header">Visão</div>
+                <div class="card-body">
+                    <p>{{ $empresa->visao ?? '—' }}</p>
+                </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label>Valores</label>
-            <textarea name="valores" class="form-control" rows="2">{{ old('valores', $empresa->valores) }}</textarea>
+        {{-- Valores --}}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm empresa-card">
+                <div class="card-header-color card-header">Valores</div>
+                <div class="card-body">
+                    <p>{{ $empresa->valores ?? '—' }}</p>
+                </div>
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Salvar Alterações</button>
-    </form>
+    </div>
+
 </div>
+
 @endsection

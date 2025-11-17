@@ -6,11 +6,11 @@
 @endsection
 
 @section('content')
-<div class="container-fluid mt-3 mb-5 p-4">
+<div class="container-fluid mt-4 mb-5">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Business Model Canvas</h2>
-        <a href="{{ route('canvas.edit') }}" class="btn btn-primary">Editar Business Model Canvas</a>
+        <a href="{{ route('canvas.edit') }}" class="btn btn-blue">Editar Business Model Canvas</a>
     </div>
 
     {{-- 

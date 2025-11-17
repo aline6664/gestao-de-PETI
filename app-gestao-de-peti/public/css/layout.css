@@ -1,6 +1,9 @@
 :root {
-  --primary: #204e80;
-  --secondary: #c9c9cc;
+  --primary: #2f4155;
+  --secondary: #e9e7e3;
+  --button-blue: #3563a7;
+  --button-blue-hover: #285597;
+  --text-title: 20px;
 }
 
 html, body {
@@ -16,4 +19,31 @@ body {
 
 main {
   flex-grow: 1;
+}
+
+.logo {
+  font-size: 25px;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: var(--button-blue);
+    border-color: var(--button-blue);
+}
+
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-blue:active,
+.btn-blue:active:focus {
+    color: #fff;
+    background-color: var(--button-blue-hover);
+    border-color: var(--button-blue-hover);
+    box-shadow: none !important; /* remove brilho azul padrão */
+}
+
+.card-header-color {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--primary);
 }

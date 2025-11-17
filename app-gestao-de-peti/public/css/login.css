@@ -1,0 +1,13 @@
+.login-card {
+    width: 380px;
+    border-radius: 14px;
+}
+
+.login-card input {
+    height: 46px;
+}
+
+.login-card button {
+    height: 48px;
+    font-weight: 600;
+}

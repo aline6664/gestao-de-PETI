@@ -6,15 +6,17 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <h2 class="mb-4">
-        Diagnóstico de TI — {{ $empresa->nome_empresa }}
-    </h2>
 
-    <div class="mb-3">
-        <strong>Nível de Maturidade:</strong> {{ $diagnostico->nivel_maturidade ?? '—' }}
-        <br>
-        <small class="text-muted">Criado em: {{ $diagnostico->created_at->format('d/m/Y H:i') }}</small>
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="mb-2">
+            <h2>Diagnóstico de TI — {{ $empresa->nome_empresa }}</h2>
+            <strong>Nível de Maturidade:</strong> {{ $diagnostico->nivel_maturidade ?? '—' }}
+                <br>
+            <small class="text-muted">Criado em: {{ $diagnostico->created_at->format('d/m/Y H:i') }}</small>
+        </div>
+        <a href="{{ route('diagnostico.edit') }}" class="btn btn-blue mt-3">Editar informações</a>
     </div>
 
     {{-- ====================== SWOT EM COLUNAS ====================== --}}
@@ -123,7 +125,7 @@
         {{-- Recursos --}}
         <div class="col-md-6">
             <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header card-header-color">
                     <h5 class="mb-0">Recursos de TI</h5>
                 </div>
                 <table class="table table-sm table-bordered mb-0 table-hover">
@@ -145,7 +147,7 @@
         {{-- Riscos --}}
         <div class="col-md-6">
             <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header card-header-color">
                     <h5 class="mb-0">Riscos</h5>
                 </div>
                 <table class="table table-sm table-bordered mb-0 table-hover">
@@ -165,8 +167,6 @@
         </div>
     </div>
 
-
-    <a href="{{ route('diagnostico.edit') }}" class="btn btn-secondary mt-3">Editar</a>
 </div>
 
 

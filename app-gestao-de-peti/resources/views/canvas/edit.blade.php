@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid mt-3 mb-5 p-4">
+<div class="container-fluid mt-4 mb-5">
 
     <h2 class="mb-4">Editar Business Model Canvas</h2>
 
@@ -30,7 +30,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="parcerias_chave">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="parcerias_chave">+ Adicionar</button>
             </div>
 
             {{-- ========== ATIVIDADES CHAVE ========== --}}
@@ -46,7 +46,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="atividades_chave">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="atividades_chave">+ Adicionar</button>
             </div>
 
             {{-- ========== PROPOSTA DE VALOR ========== --}}
@@ -62,7 +62,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="proposta_valor">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="proposta_valor">+ Adicionar</button>
             </div>
 
             {{-- ========== RELACIONAMENTO COM CLIENTES ========== --}}
@@ -78,7 +78,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="relacionamento_clientes">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="relacionamento_clientes">+ Adicionar</button>
             </div>
 
             {{-- ========== SEGMENTOS DE CLIENTES ========== --}}
@@ -94,7 +94,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="segmentos_clientes">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="segmentos_clientes">+ Adicionar</button>
             </div>
 
             {{-- ========== RECURSOS CHAVE ========== --}}
@@ -110,7 +110,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="recursos_chave">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="recursos_chave">+ Adicionar</button>
             </div>
 
             {{-- ========== CANAIS DE DISTRIBUIÇÃO ========== --}}
@@ -126,7 +126,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="canais_distribuicao">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="canais_distribuicao">+ Adicionar</button>
             </div>
 
             {{-- ========== ESTRUTURA DE CUSTOS ========== --}}
@@ -142,7 +142,7 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="estrutura_custos">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="estrutura_custos">+ Adicionar</button>
             </div>
 
             {{-- ========== FONTES DE RECEITA ========== --}}
@@ -158,13 +158,13 @@
                     @endforeach
                 </div>
 
-                <button type="button" class="btn btn-primary add-item" data-target="fontes_receita">+ Adicionar</button>
+                <button type="button" class="btn btn-blue add-item" data-target="fontes_receita">+ Adicionar</button>
             </div>
 
         </div>
 
         <button class="btn btn-success mt-4">Salvar Alterações</button>
-        <a href="{{ route('canvas.index') }}" class="btn btn-secondary mt-4">Voltar</a>
+        <a href="{{ route('canvas.index') }}" class="btn btn-secondary mt-4">Cancelar</a>
     </form>
 </div>
 

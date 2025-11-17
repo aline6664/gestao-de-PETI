@@ -15,18 +15,30 @@ use App\Http\Controllers\EmpresaController;
 |
 */
 
-// Página inicial
-Route::get('/', [EmpresaController::class, 'index'])->name('home');
+// Página inicial (Home do Sistema)
+Route::get('/', function () {
+    return view('login');
+})->name('login');
+
+// Página de Login
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+// POST do login falso por enquanto
+Route::post('/login', function() {
+    return redirect()->route('home');
+});
 
 // ROTA DE DADOS DA EMPRESA
 Route::get('/empresa', [EmpresaController::class, 'index'])->name('empresa.index');
-Route::put('/empresa', [EmpresaController::class, 'update'])->name('empresa.update');
+Route::get('/empresa/editar', [EmpresaController::class, 'edit'])->name('empresa.edit');
+Route::put('/empresa/atualizar', [EmpresaController::class, 'update'])->name('empresa.update');
 
 // ROTAS DE DIAGNÓSTICO DE TI
 Route::get('/diagnostico', [DiagnosticoTIController::class, 'index'])->name('diagnostico.index');
 Route::get('/diagnostico/editar', [DiagnosticoTIController::class, 'edit'])->name('diagnostico.edit');
 Route::put('/diagnostico', [DiagnosticoTIController::class, 'update'])->name('diagnostico.update');
-
 
 // ROTAS DO BUSINESS MODEL CANVAS
 Route::get('/canvas', [CanvasController::class, 'index'])->name('canvas.index');
